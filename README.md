@@ -9,7 +9,9 @@
 맡은 역할 : 앱 개발 및 아두이노와 Google firebase 연동을 통한 데이터 송수신</br>
 개발 기간 : '22.03.08 ~ 개발 중</br>
 개발 언어 : Java</br>
-개발 환경 : Windows 10 pro, Android Studio Bumblebee
+개발 환경 : Windows 10 pro,
+            Jdk 1.8('22.03.08 ~ '22.05.14) -> Jdk 11('22.05.15),
+            Android Studio Bumblebee('22.03.08 ~ '22.05.14) -> Android Studio Chipmunk('22.05.15)
 </code>
 </pre>
 
@@ -42,6 +44,7 @@
 6. [RoomDB](https://developer.android.com/training/data-storage/room?hl=ko)
 7. [APACHE POI, POI-OOXML](https://poi.apache.org/)
 8. [Google firebase](https://firebase.google.com/?hl=ko)
+9. [Google OssLicenses plugin](https://developers.google.com/android/guides/opensource)
 
 <h2 id="license">License</h2>
 
@@ -187,6 +190,25 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 [More Information](https://github.com/firebase/quickstart-android/blob/master/LICENSE)
+
+</br>
+
+9. Google OssLicenses plugin
+
+Version 2.0, January 2004
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+[More Information1](https://creativecommons.org/licenses/by/4.0/)
+[More Information2](https://www.apache.org/licenses/LICENSE-2.0)
 
 </br>
 
