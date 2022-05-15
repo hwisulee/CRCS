@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ToolBar Line -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#00ff0000"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_listbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_effect"
+                android:clickable="true"
+                app:layout_constraintEnd_toStartOf="@+id/main_alertbtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="4"
+                app:layout_constraintStart_toStartOf="parent"
+                tool:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
+
+                <ImageView
+                    android:id="@+id/main_listbtn_checkedimg"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_round_spa_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="0.5"
+                    app:layout_constraintEnd_toStartOf="@id/main_listbtn_text"/>
+
+                <TextView
+                    android:id="@+id/main_listbtn_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@id/main_listbtn_checkedimg"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="3"
+                    app:layout_constraintEnd_toStartOf="@+id/main_listbtn_img"/>
+
+                <ImageView
+                    android:id="@+id/main_listbtn_img"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_outline_keyboard_arrow_down_24"
+                    app:layout_constraintStart_toEndOf="@+id/main_listbtn_text"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="0.5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tool:ignore="ContentDescription" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageButton
+                android:id="@+id/main_alertbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_effect"
+                android:src="@drawable/ic_outline_textsms_24"
+                app:layout_constraintStart_toEndOf="@+id/main_listbtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/main_settingbtn"
+                tool:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"/>
+
+            <ImageButton
+                android:id="@+id/main_settingbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_effect"
+                android:src="@drawable/ic_baseline_settings_24"
+                app:layout_constraintStart_toEndOf="@id/main_alertbtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                tool:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Main Line -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/main_appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:layout_marginHorizontal="10dp"
+            app:elevation="0dp">
+
+            <!-- 접혀지는 View -->
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax">
+
+                    <!-- 접혀지는 view -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_collapsleft"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintEnd_toStartOf="@+id/main_collapsright">
+
+                            <TextView
+                                android:id="@+id/main_tem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="50sp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="20dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"/>
+
+                            <TextView
+                                android:id="@+id/main_addr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="20dp"
+                                app:layout_constraintTop_toBottomOf="@+id/main_tem"
+                                app:layout_constraintLeft_toLeftOf="parent"/>
+
+                            <TextView
+                                android:id="@+id/main_tem_data"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="20dp"
+                                app:layout_constraintTop_toBottomOf="@+id/main_addr"
+                                app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_collapsright"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintStart_toEndOf="@+id/main_collapsleft"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_weight="0.5"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <ImageView
+                                android:id="@+id/main_weatherimg"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitCenter"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                tool:ignore="ContentDescription" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <!-- 고정되는 View -->
+            <TextView
+                android:id="@+id/main_plantState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="38dp"
+                android:gravity="center"
+                android:text="현재 미니온실 온도 : @@°C   습도 : @@%"
+                android:textSize="17dp"
+                android:background="@drawable/bottom_stroke"
+                tool:ignore="HardcodedText" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#00ff0000"
+                tool:ignore="SpeakableTextPresentCheck"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- Main 작업 공간 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- 첫번째 작업 공간 (온도, 습도 조절기(?)) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/main_firstline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/main_secondline">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main_temctl"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/background01"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintEnd_toStartOf="@+id/main_rehctl"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <com.marcinmoskala.arcseekbar.ArcSeekBar
+                                android:id="@+id/main_temseekbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                app:thumb="@drawable/ic_twotone_circle_24"
+                                app:progressColor="@color/whitered"
+                                app:progressWidth="15dp"
+                                app:maxProgress="100"
+                                app:progressBackgroundColor="@color/whitegray"
+                                app:progressBackgroundWidth="15dp"
+                                app:roundEdges="true"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toTopOf="@+id/main_tembtnview"/>
+
+                            <TextView
+                                android:id="@+id/main_temseekbartxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="35sp"
+                                android:textAlignment="center"
+                                android:text=""
+                                android:gravity="center"
+                                tool:ignore="HardcodedText"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/main_tembtnview"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@+id/main_temseekbar"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/main_temseekbarminusbtn"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginStart="5dp"
+                                    android:background="@drawable/background03"
+                                    android:src="@drawable/ic_round_remove_24"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                                <ImageButton
+                                    android:id="@+id/main_temseekbarplusbtn"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/background03"
+                                    android:src="@drawable/ic_round_add_24"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main_rehctl"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/background01"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/main_temctl"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <com.marcinmoskala.arcseekbar.ArcSeekBar
+                                android:id="@+id/main_rehseekbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                app:thumb="@drawable/ic_twotone_circle_24"
+                                app:progressColor="@color/whiteblue"
+                                app:progressWidth="15dp"
+                                app:maxProgress="100"
+                                app:progressBackgroundColor="@color/whitegray"
+                                app:progressBackgroundWidth="15dp"
+                                app:roundEdges="true"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toTopOf="@+id/main_rehbtnview"/>
+
+                            <TextView
+                                android:id="@+id/main_rehseekbartxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text=""
+                                android:textAlignment="center"
+                                android:textSize="35sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tool:ignore="HardcodedText" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/main_rehbtnview"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@+id/main_rehseekbar"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/main_rehseekbarminusbtn"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginStart="5dp"
+                                    android:background="@drawable/background03"
+                                    android:src="@drawable/ic_round_remove_24"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                                <ImageButton
+                                    android:id="@+id/main_rehseekbarplusbtn"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/background03"
+                                    android:src="@drawable/ic_round_add_24"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 두번째 작업 공간 (차양막, 환풍기) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/main_secondline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/main_firstline"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/main_thirdline">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main_awning"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/background01"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintEnd_toStartOf="@+id/main_ventilator"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_awingA"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:layout_constraintVertical_weight="1"
+                            app:layout_constraintBottom_toTopOf="@+id/main_awingB">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_baseline_settings_brightness_24"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_awingB"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toBottomOf="@+id/main_awingA"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:layout_constraintVertical_weight="0.5"
+                            app:layout_constraintBottom_toTopOf="@+id/main_awingC">
+
+                            <TextView
+                                android:id="@+id/main_awingB_AUTOtxt"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="차양막 자동 설정"
+                                android:gravity="center"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/main_awingB_AUTOswitch"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <Switch
+                                android:id="@+id/main_awingB_AUTOswitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/main_awingB_AUTOtxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_awingC"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toBottomOf="@id/main_awingB"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:layout_constraintVertical_weight="0.5"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:id="@+id/main_awingB_SELFtext"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="차양막 ON / OFF"
+                                android:gravity="center"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/main_awingB_SELFswitch"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <Switch
+                                android:id="@+id/main_awingB_SELFswitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/main_awingB_SELFtext"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main_ventilator"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/background01"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/main_awning"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_ventilatorA"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:layout_constraintVertical_weight="1"
+                            app:layout_constraintBottom_toTopOf="@+id/main_ventilatorB">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:src="@drawable/ic_round_wind_power_24"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_ventilatorB"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toBottomOf="@+id/main_ventilatorA"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:layout_constraintVertical_weight="0.5"
+                            app:layout_constraintBottom_toTopOf="@+id/main_ventilatorC">
+
+                            <TextView
+                                android:id="@+id/main_ventilatorB_AUTOtxt"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="환풍기 자동 설정"
+                                android:gravity="center"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/main_ventilatorB_AUTOswitch"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <Switch
+                                android:id="@+id/main_ventilatorB_AUTOswitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/main_ventilatorB_AUTOtxt"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/main_ventilatorC"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintTop_toBottomOf="@id/main_ventilatorB"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:layout_constraintVertical_weight="0.5"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:id="@+id/main_ventilatorB_SELFtext"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="환풍기 ON / OFF"
+                                android:gravity="center"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/main_ventilatorB_SELFswitch"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <Switch
+                                android:id="@+id/main_ventilatorB_SELFswitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/main_ventilatorB_SELFtext"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 세번째 작업 공간 (달력) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/main_thirdline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/background01"
+                    app:layout_constraintTop_toBottomOf="@+id/main_secondline"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/main_fourthline">
+
+                    <CalendarView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 네번째 작업 공간 (차트) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/main_fourthline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/background01"
+                    app:layout_constraintTop_toBottomOf="@+id/main_thirdline"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/main_charttitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:gravity="center"
+                        android:text="0월의 평균 온도와 습도"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        tool:ignore="HardcodedText" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/main_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        app:layout_constraintTop_toBottomOf="@+id/main_charttitle"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

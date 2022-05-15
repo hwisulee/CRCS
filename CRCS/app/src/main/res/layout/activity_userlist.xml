@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="600dp"
+    android:layout_gravity="center"
+    android:background="@drawable/background02"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/userlist_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_stroke"
+        android:gravity="center"
+        android:text="유저 정보 관리"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:ignore="HardcodedText" />
+
+    <!-- 첫번째 작업 공간 (이름) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userlist_addrlist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bottom_stroke"
+        android:layout_marginVertical="8dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@+id/userlist_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/userlist_okbtn"
+        tool:listitem="@layout/list_row_user"/>
+
+    <ImageButton
+        android:id="@+id/userlist_addbtn"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:background="@drawable/ripple_effect"
+        android:src="@drawable/ic_baseline_add_location_alt_24"
+        android:scaleType="fitCenter"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintEnd_toStartOf="@+id/userlist_okbtn"/>
+
+    <ImageButton
+        android:id="@+id/userlist_okbtn"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:background="@drawable/ripple_effect"
+        android:src="@drawable/ic_baseline_check_circle_24"
+        android:scaleType="fitCenter"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userlist_addbtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        tool:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

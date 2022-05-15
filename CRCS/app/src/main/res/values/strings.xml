@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CRCS</string>
+    <string name="bar_tem">%s°C</string>
+    <string name="bar_reh">%s%%</string>
+    <string name="list_txt" formatted="false">%s(%s)</string>
+    <string name="tem_data" formatted="false">%s°C / %s°C\n%s, %s %s</string>
+    <string name="blank1">%s </string>
+    <string name="blank2" formatted="false">%s %s</string>
+    <string name="blank3" formatted="false">%s %s %s</string>
+    <string name="blank4" formatted="false">%s %s %s %s</string>
+
+    <!-- API KEY -->
+    <string name="kakaoKey">YOUR_API_KEY</string>
+    <string name="restKey">YOUR_API_KEY</string>
+    <string name="apiKey">YOUR_API_KEY</string>
+</resources>
