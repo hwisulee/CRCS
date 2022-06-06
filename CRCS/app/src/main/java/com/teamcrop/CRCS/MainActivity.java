@@ -36,9 +36,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.marcinmoskala.arcseekbar.ArcSeekBar;
 import com.marcinmoskala.arcseekbar.ProgressListener;
 
@@ -68,23 +72,24 @@ public class MainActivity extends AppCompatActivity {
     PlantData plantData = new PlantData();
 
     MainHandler mainHandler;
+    SeekBarOnChangedListener onChangedListener;
+    BtnOnClickListener onClickListener;
     ProgressDialog StartProgressDialog;
     AlertDialog dlg;
     RoomDB database;
 
     AppBarLayout appBarLayout;
     ConstraintLayout main_listbtn;
+    Button btnav_btn;
     ImageButton main_alertbtn, main_settingbtn, temMbtn, temPbtn, rehMbtn, rehPbtn;
     ImageView weatherimg;
-    TextView tem, tem_data, addr, main_listbtn_text, temSeekBartxt, rehSeekBartxt;
+    TextView tem, tem_data, addr, main_listbtn_text, main_plantState, temSeekBartxt, rehSeekBartxt;
+    TextView btnav_tem, btnav_reh;
     ArcSeekBar temSeekBar, rehSeekBar;
+    BottomNavigationView btnav;
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference myRef = firebaseDatabase.getReference();
-
-    final DatabaseReference status_TEM = myRef.child("tem").child("status");
-    //final DatabaseReference status_TEM = myRef.child("tem").child("status");
-    //final DatabaseReference status_TEM = myRef.child("tem").child("status");
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -108,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         mainHandler = new MainHandler(Looper.getMainLooper());
         dlg = new AlertDialog.Builder(MainActivity.this).create();
 
-        BtnOnClickListener onClickListener = new BtnOnClickListener();
-        SeekBarOnChangedListener onChangedListener = new SeekBarOnChangedListener();
+        onClickListener = new BtnOnClickListener();
+        onChangedListener = new SeekBarOnChangedListener();
 
         SharedPreferences pref = getSharedPreferences("PrefData", Activity.MODE_PRIVATE);
         int checkedList = pref.getInt("checkedList", 0);
@@ -127,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         main_listbtn_text = findViewById(R.id.main_listbtn_text);
         main_alertbtn = findViewById(R.id.main_alertbtn);
         main_settingbtn = findViewById(R.id.main_settingbtn);
+        main_plantState = findViewById(R.id.main_plantState);
         temSeekBar = findViewById(R.id.main_temseekbar);
         temSeekBartxt = findViewById(R.id.main_temseekbartxt);
         temMbtn = findViewById(R.id.main_temseekbarminusbtn);
@@ -135,11 +141,18 @@ public class MainActivity extends AppCompatActivity {
         rehSeekBartxt = findViewById(R.id.main_rehseekbartxt);
         rehMbtn = findViewById(R.id.main_rehseekbarminusbtn);
         rehPbtn = findViewById(R.id.main_rehseekbarplusbtn);
+        btnav = findViewById(R.id.btnav);
+        btnav_tem = findViewById(R.id.btnav_temv);
+        btnav_reh = findViewById(R.id.btnav_rehv);
+        btnav_btn = findViewById(R.id.btnav_btn);
+
+        btnav.setVisibility(View.GONE);
 
         // onClickListener
         main_listbtn.setOnClickListener(onClickListener);
         main_alertbtn.setOnClickListener(onClickListener);
         main_settingbtn.setOnClickListener(onClickListener);
+        btnav_btn.setOnClickListener(onClickListener);
 
         temMbtn.setOnClickListener(onChangedListener);
         temPbtn.setOnClickListener(onChangedListener);
@@ -161,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
         UserdataList.clear();
         UserdataList.addAll(database.userDao().getAll());
         System.out.println(UserdataList.size());
-
     }
 
     class BtnOnClickListener implements Button.OnClickListener {
@@ -181,6 +193,26 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), OssLicensesMenuActivity.class);
                 startActivity(intent);
             }
+            else if (id == R.id.btnav_btn) {
+                System.out.println("Clicked btnav_btn");
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        DatabaseReference tem = myRef.child("temStatus").child("temSetValue");
+                        DatabaseReference reh = myRef.child("rehStatus").child("rehSetValue");
+
+                        tem.setValue(temSeekBar.getProgress());
+                        reh.setValue(rehSeekBar.getProgress());
+
+                        btnav.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
         }
     }
 
@@ -192,10 +224,15 @@ public class MainActivity extends AppCompatActivity {
             int id = main_view.getId();
 
             if (id == R.id.main_temseekbar) {
+                System.out.println("abc : "+id);
                 temSeekBartxt.setText(getString(R.string.bar_tem, Integer.toString(progress)));
+                btnav_tem.setText(getString(R.string.bar_tem, Integer.toString(temSeekBar.getProgress())));
+                btnav.setVisibility(View.VISIBLE);
             }
             else if (id == R.id.main_rehseekbar) {
                 rehSeekBartxt.setText(getString(R.string.bar_reh, Integer.toString(progress)));
+                btnav_reh.setText(getString(R.string.bar_reh, Integer.toString(rehSeekBar.getProgress())));
+                btnav.setVisibility(View.VISIBLE);
             }
         }
 
@@ -227,18 +264,26 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.main_temseekbarminusbtn) {
                 temSeekBar.setProgress(temSeekBar.getProgress() - 1);
                 temSeekBartxt.setText(getString(R.string.bar_tem, Integer.toString(temSeekBar.getProgress())));
+                btnav_tem.setText(getString(R.string.bar_tem, Integer.toString(temSeekBar.getProgress())));
+                btnav.setVisibility(View.VISIBLE);
             }
             else if (id == R.id.main_temseekbarplusbtn) {
                 temSeekBar.setProgress(temSeekBar.getProgress() + 1);
                 temSeekBartxt.setText(getString(R.string.bar_tem, Integer.toString(temSeekBar.getProgress())));
+                btnav_tem.setText(getString(R.string.bar_tem, Integer.toString(temSeekBar.getProgress())));
+                btnav.setVisibility(View.VISIBLE);
             }
             else if (id == R.id.main_rehseekbarminusbtn) {
                 rehSeekBar.setProgress(rehSeekBar.getProgress() - 1);
                 rehSeekBartxt.setText(getString(R.string.bar_reh, Integer.toString(rehSeekBar.getProgress())));
+                btnav_reh.setText(getString(R.string.bar_reh, Integer.toString(rehSeekBar.getProgress())));
+                btnav.setVisibility(View.VISIBLE);
             }
             else if (id == R.id.main_rehseekbarplusbtn) {
                 rehSeekBar.setProgress(rehSeekBar.getProgress() + 1);
                 rehSeekBartxt.setText(getString(R.string.bar_reh, Integer.toString(rehSeekBar.getProgress())));
+                btnav_reh.setText(getString(R.string.bar_reh, Integer.toString(rehSeekBar.getProgress())));
+                btnav.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -491,6 +536,24 @@ public class MainActivity extends AppCompatActivity {
                 tem_data.setText(getString(R.string.tem_data, TMX[0], TMN[0], temp24[0], AMPM, temp12[1]));
                 addr.setText(getString(R.string.blank3, Geotemp[0], Geotemp[1], Geotemp[2]));
                 main_listbtn_text.setText(getString(R.string.list_txt, name, MyReverseGeo));
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        temSeekBartxt.setText(getString(R.string.bar_tem, snapshot.child("temStatus").child("temSetValue").getValue()));
+                        rehSeekBartxt.setText(getString(R.string.bar_reh, snapshot.child("rehStatus").child("rehSetValue").getValue()));
+                        btnav_tem.setText(getString(R.string.bar_tem, snapshot.child("temStatus").child("temSetValue").getValue()));
+                        btnav_reh.setText(getString(R.string.bar_reh, snapshot.child("rehStatus").child("rehSetValue").getValue()));
+                        main_plantState.setText("현재 미니온실 온도 : " + snapshot.child("temStatus").child("temRealValue").getValue() + "°C" + "   습도 : " + snapshot.child("rehStatus").child("rehRealValue").getValue() + "%");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
             else if (UltraSrtFcstTemp[0].equals("10") || VilageFcstTemp[0].equals("10")) {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);

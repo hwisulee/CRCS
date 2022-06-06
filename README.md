@@ -32,6 +32,11 @@
 
 ![crcs2](https://user-images.githubusercontent.com/62528282/168420715-13924e93-3e7f-4046-9a61-73eb41716054.gif)
 
+3. firebase Realtime Database 연동 및 컨트롤(gif 속도 맞추는 과정에서 오차가 생긴 것, 실제로는 지연시간 없음)
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/62528282/172094512-967550b6-a4e3-4208-9e1a-7ea8509f8f16.gif)
+![db](https://user-images.githubusercontent.com/62528282/172094510-7fc223a0-2500-4805-bb15-63d09cb5daed.gif)
+
 <h2 id="library">Library</h2>
 
 >This Project included this Library and API.
