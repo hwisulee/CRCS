@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     AppBarLayout appBarLayout;
     ConstraintLayout main_listbtn;
-    Button btnav_btn;
-    ImageButton main_alertbtn, main_settingbtn, temMbtn, temPbtn, rehMbtn, rehPbtn;
+    ImageButton main_alertbtn, main_settingbtn, temMbtn, temPbtn, rehMbtn, rehPbtn, btnav_btn;
     ImageView weatherimg;
     TextView tem, tem_data, addr, main_listbtn_text, main_plantState, temSeekBartxt, rehSeekBartxt;
     TextView btnav_tem, btnav_reh;
@@ -224,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
             int id = main_view.getId();
 
             if (id == R.id.main_temseekbar) {
-                System.out.println("abc : "+id);
                 temSeekBartxt.setText(getString(R.string.bar_tem, Integer.toString(progress)));
                 btnav_tem.setText(getString(R.string.bar_tem, Integer.toString(temSeekBar.getProgress())));
                 btnav.setVisibility(View.VISIBLE);
@@ -487,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // TMX, TMN
-                String[] TMX = new String[1], TMN = new String[1];
+                String[] TMX = new String[3], TMN = new String[3];
 
                 int a = 0, b = 0;
                 for (int i = 0; i < VilageFcstTemp.length; i++) {

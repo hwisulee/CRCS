@@ -740,14 +740,12 @@
                     app:layout_constraintRight_toLeftOf="@id/btnav_btn"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnav_btn"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/ripple_effect"
-                    android:text="☑"
-                    android:textColor="#3DD483"
-                    android:textSize="25sp"
+                    android:src="@drawable/ic_baseline_check_circle_outline_24"
                     android:gravity="center"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_weight="0.5"

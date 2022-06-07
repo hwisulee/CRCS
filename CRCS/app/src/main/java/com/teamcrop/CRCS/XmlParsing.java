@@ -125,25 +125,25 @@ public class XmlParsing extends MainActivity {
         String[] yesterday = getCurrentTimeData("yesterday").split(" ");
 
         String returnType = "xml";
-        String num_of_rows = "200";
+        String num_of_rows = "1000";
         String pageNo = "1";
         String base_date = today[0];
         String base_time = today[1];
 
         if (base_time.substring(0, 2).equals("00") || base_time.substring(0, 2).equals("01")) {
             base_date = yesterday[0];
-            base_time = "0200";
+            base_time = "0500";
         }
         else if (base_time.substring(0, 2).equals("02")) {
             int temp = Integer.parseInt(base_time.substring(2, 4));
 
             if (temp >= 0 && temp <= 10) {
                 base_date = yesterday[0];
-                base_time = "0200";
+                base_time = "0500";
             }
         }
 
-        base_time = "0200";
+        base_time = "0500";
 
         String queryUrl="http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
                 + "serviceKey=" + service_key
